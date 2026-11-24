@@ -18,5 +18,12 @@
   var spans=document.querySelectorAll('#phs span');
   if(phase>=0) spans[phase].className='on';
   requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=pct+'%'})});
+  var items=document.querySelectorAll('#places .p');
+  if(items.length>1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var i=0;
+    setInterval(function(){
+      items[i].classList.remove('on'); i=(i+1)%items.length; items[i].classList.add('on');
+    },2400);
+  }
   var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
 })();
