@@ -18,10 +18,5 @@
   var spans=document.querySelectorAll('#phs span');
   if(phase>=0) spans[phase].className='on';
   requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=pct+'%'})});
-
-  var btn=document.getElementById('theme'), root=document.documentElement;
-  var dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  function set(d){dark=d;root.setAttribute('data-theme',d?'dark':'light');btn.textContent=d?'Light mode':'Dark mode'}
-  btn.textContent=dark?'Light mode':'Dark mode';
-  btn.addEventListener('click',function(){set(!dark)});
+  var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
 })();
