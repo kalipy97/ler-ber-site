@@ -37,10 +37,10 @@ nav a:hover{border-color:var(--sun)}
 
 /* hero */
 .hero{padding:2.5rem 0 4rem}
-.hero p.lede{max-width:52ch}
+.hero p.lede{max-width:66ch}
 .eyebrow{display:inline-flex;align-items:center;gap:.5rem;margin:0 0 1.2rem;padding:.35rem .9rem .35rem .6rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--green);font-weight:600;font-size:.9rem;letter-spacing:.02em;max-width:none}
 .eyebrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.hero h1{max-width:15ch;margin-bottom:.6em}
+.hero h1{max-width:none;margin-bottom:.6em}
 .hero h1 .hl{position:relative;display:inline-block;padding-bottom:.18em;background:linear-gradient(90deg,var(--green),var(--reed));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.16em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q10 0 20 4 T40 4' fill='none' stroke='%23E4A02F' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x 0 50%/40px 100%;opacity:.9}
 @media (prefers-reduced-motion:no-preference){
