@@ -18,6 +18,7 @@
     <nav aria-label="Main">
       <a href="#about">About</a>
       <a href="#programmes">Programmes</a>
+      <a href="#volunteer">Volunteer</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -36,7 +37,7 @@
       <span class="ln">to protect Lake Victoria.</span>
     </p>
     <div class="btns">
-      <a class="btn primary" href="#partner">Support the volunteers</a>
+      <a class="btn primary" href="#volunteer">Join as a volunteer</a>
       <a class="btn ghost" href="#campaign">See the volunteer programme</a>
     </div>
 
@@ -120,7 +121,75 @@
   </div>
 </section>
 
-<section id="partner">
+<section id="volunteer">
+  <div class="wrap vol">
+    <div>
+      <h2>Volunteer with us</h2>
+      <p class="lede">Give a few hours to a cleaner Homa Bay and a healthier Lake Victoria. Tell us where you are and how you would like to help, and we will get back to you.</p>
+      <ul class="vol-list">
+        <li>Join lakeside and market clean-ups</li>
+        <li>Help communities separate waste at the source</li>
+        <li>Spread the word in your estate, school or church</li>
+        <li>Document the work with photos and records</li>
+      </ul>
+      <p class="vol-note">No experience needed. Everyone who cares about the lake is welcome.</p>
+    </div>
+
+    <form class="card vol-form" id="volForm" novalidate>
+      <div class="field">
+        <label for="vName">Full name</label>
+        <input id="vName" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="vPhone">Phone number</label>
+        <input id="vPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="vArea">Where do you live?</label>
+          <select id="vArea" name="area" required>
+            <option value="">Choose your area</option>
+            <option>Sofia</option>
+            <option>Makongeni</option>
+            <option>Shauri Yako</option>
+            <option>Oginga Beach area</option>
+            <option>Homa Bay Fish Market area</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="vTime">When are you free?</label>
+          <select id="vTime" name="time">
+            <option value="">Choose</option>
+            <option>Weekdays</option>
+            <option>Weekends</option>
+            <option>Weekdays and weekends</option>
+            <option>It varies</option>
+          </select>
+        </div>
+      </div>
+      <fieldset class="field">
+        <legend>How would you like to help?</legend>
+        <label class="chk"><input type="checkbox" name="help" value="Clean-ups"> Clean-ups</label>
+        <label class="chk"><input type="checkbox" name="help" value="Waste separation"> Waste separation</label>
+        <label class="chk"><input type="checkbox" name="help" value="Awareness"> Spreading awareness</label>
+        <label class="chk"><input type="checkbox" name="help" value="Photos and records"> Photos and records</label>
+      </fieldset>
+      <div class="field">
+        <label for="vMsg">Anything else? <span class="opt">(optional)</span></label>
+        <textarea id="vMsg" name="message" rows="3"></textarea>
+      </div>
+      <div class="vol-btns">
+        <button class="btn primary" type="submit" value="whatsapp">Send on WhatsApp</button>
+        <button class="btn ghost" type="submit" value="email">Send by email</button>
+      </div>
+      <p class="vol-status" id="volStatus" role="status" aria-live="polite"></p>
+      <p class="vol-fine">This opens a ready-to-send message to Ler Ber CBO. Your details go only to us.</p>
+    </form>
+  </div>
+</section>
+
+<section id="partner" class="alt">
   <div class="wrap">
     <h2>Partner with us</h2>
     <p class="lede">Help us mobilize the resources to equip our volunteers. You can sponsor a full category, selected items or a contribution towards procurement and programme operations, in kind, in funds or through logistics.</p>
@@ -181,6 +250,7 @@
         <li><a href="#about">About us</a></li>
         <li><a href="#programmes">Programmes</a></li>
         <li><a href="#campaign">Volunteer programme</a></li>
+        <li><a href="#volunteer">Sign up to volunteer</a></li>
         <li><a href="#partner">Partner with us</a></li>
       </ul>
     </nav>
