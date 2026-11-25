@@ -148,3 +148,29 @@ nav a:hover{border-color:var(--sun)}
 .foot-bottom p{margin:0}
 @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-about{grid-column:1/-1}}
 @media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+
+
+/* volunteer sign-up */
+.vol{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start}
+.vol-list{margin:1.2rem 0;padding:0;list-style:none}
+.vol-list li{position:relative;padding:.35rem 0 .35rem 1.6rem}
+.vol-list li::before{content:"";position:absolute;left:0;top:.8rem;width:.8rem;height:.8rem;border-radius:50%;background:var(--reed)}
+.vol-note{color:var(--muted)}
+.vol-form{padding:1.6rem}
+.vol-form .field{margin:0 0 1rem;padding:0;border:0;min-width:0}
+.vol-form label,.vol-form legend{display:block;font-weight:600;margin-bottom:.3rem;padding:0}
+.vol-form .opt{font-weight:400;color:var(--muted)}
+.vol-form input[type=text],.vol-form input[type=tel],.vol-form select,.vol-form textarea{width:100%;padding:.7rem .8rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.vol-form textarea{resize:vertical}
+.vol-form input:focus-visible,.vol-form select:focus-visible,.vol-form textarea:focus-visible{outline:3px solid var(--sun);outline-offset:1px}
+.vol-form .invalid{border-color:#D64545}
+.vol-form .row{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.vol-form .chk{display:inline-flex;align-items:center;gap:.5rem;margin:0 1rem .4rem 0;font-weight:400}
+.vol-form .chk input{width:1.1rem;height:1.1rem;accent-color:var(--green)}
+.vol-btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:.4rem}
+.vol-btns .btn{font:inherit;font-weight:600;cursor:pointer;background:transparent}
+.vol-btns .btn.primary{background:var(--green);color:var(--on-green)}
+.vol-btns .btn.primary:hover{background:var(--green-deep)}
+.vol-status{min-height:1.4em;margin:.9rem 0 0;font-weight:600;color:var(--green)}
+.vol-status.err{color:#D64545}
+.vol-fine{margin:.3rem 0 0;color:var(--muted);font-size:.9rem}
