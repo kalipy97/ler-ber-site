@@ -1,71 +1,279 @@
-(function(){
-  var start=new Date(2026,10,20), end=new Date(2027,1,17), DAY=864e5;
-  var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  var n=Math.floor((today-start)/DAY)+1, total=90;
-  var num=document.getElementById('dnum'), lbl=document.getElementById('dlbl');
-  var fill=document.getElementById('pfill'), bar=document.getElementById('pbar');
-  var pct=0, phase=-1;
-  if(today<start){
-    var d=Math.ceil((start-today)/DAY);
-    num.textContent=d; lbl.textContent=d===1?'day to launch':'days to launch';
-  }else if(today>end){
-    num.textContent=total; lbl.textContent='days complete'; pct=100; phase=2;
-  }else{
-    num.textContent='Day '+n; lbl.textContent='of '+total;
-    pct=Math.min(100,n/total*100); phase=Math.min(2,Math.floor((n-1)/30));
-    bar.setAttribute('aria-valuenow',n);
-  }
-  var spans=document.querySelectorAll('#phs span');
-  if(phase>=0) spans[phase].className='on';
-  requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=pct+'%'})});
-  var items=document.querySelectorAll('#places .p');
-  if(items.length>1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var i=0;
-    setInterval(function(){
-      items[i].classList.remove('on'); i=(i+1)%items.length; items[i].classList.add('on');
-    },2400);
-  }
-  var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
-})();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ler Ber – Clean shores, a living lake, waste turned to worth</title>
+<meta name="description" content="Ler Ber is a youth-led community organization in Homa Bay, Kenya. Join our 90-day volunteer clean-up programme to protect Lake Victoria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">Ler <span>Ber</span></a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-/* ---- volunteer sign-up: builds a ready-to-send WhatsApp or email message ---- */
-(function(){
-  var form=document.getElementById('volForm'); if(!form) return;
-  var status=document.getElementById('volStatus'), how='whatsapp';
-  var WHATSAPP='254720032125', EMAIL='lerber.ke@outlook.com';
-  form.querySelectorAll('button[type=submit]').forEach(function(b){
-    b.addEventListener('click',function(){how=b.value});
-  });
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var f=form.elements, bad=[];
-    ['name','phone','area'].forEach(function(k){
-      var el=f[k], ok=el.value.trim()!=='';
-      el.classList.toggle('invalid',!ok); if(!ok) bad.push(el);
-    });
-    if(bad.length){
-      status.className='vol-status err';
-      status.textContent='Please fill in your name, phone number and area.';
-      bad[0].focus(); return;
-    }
-    var help=Array.prototype.map.call(form.querySelectorAll('input[name=help]:checked'),function(c){return c.value});
-    var lines=['Hello Ler Ber CBO, I would like to volunteer.','',
-      'Name: '+f.name.value.trim(),
-      'Phone: '+f.phone.value.trim(),
-      'Area: '+f.area.value,
-      'Free: '+(f.time.value||'Not stated'),
-      'I can help with: '+(help.length?help.join(', '):'Not stated')];
-    var msg=f.message.value.trim(); if(msg) lines.push('Note: '+msg);
-    var text=lines.join('\n');
-    status.className='vol-status';
-    if(how==='email'){
-      status.textContent='Opening your email app. Press send to finish.';
-      location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Volunteer sign-up: '+f.name.value.trim())+'&body='+encodeURIComponent(text);
-    }else{
-      status.textContent='Opening WhatsApp. Press send to finish.';
-      window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(text),'_blank','noopener');
-    }
-  });
-  form.addEventListener('input',function(e){e.target.classList.remove('invalid')});
-})();
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M12 10C12 6 14.5 3 19 3c0 4.5-3 7-7 7zM12 10c0-3-2-5-5.5-5 0 3.5 2.5 5 5.5 5"/></svg><span class="eb">Protecting Lake Victoria · <span class="places" id="places" aria-hidden="true"><span class="p on">Homa Bay, Kenya</span><span class="p">Sofia</span><span class="p">Makongeni</span><span class="p">Shauri Yako</span><span class="p">Oginga Beach</span></span><span class="sr">Homa Bay, Kenya</span></span></p>
+    <h1>Clean shores. A living lake. <span class="hl">Waste turned to worth.</span></h1>
+    <p class="lede funnel">
+      <span class="ln">Ler Ber is a youth-led community organization in Homa Bay County, Kenya.</span>
+      <span class="ln">We are starting with a volunteer clean-up programme on</span>
+      <span class="ln">the lakeside while we mobilize the resources</span>
+      <span class="ln">for our full waste-to-value work, all</span>
+      <span class="ln">to protect Lake Victoria.</span>
+    </p>
+    <div class="btns">
+      <a class="btn primary" href="#volunteer">Join as a volunteer</a>
+      <a class="btn ghost" href="#campaign">See the volunteer programme</a>
+    </div>
+
+    <div class="tracker" role="group" aria-labelledby="trk">
+      <div class="tr-top">
+        <div>
+          <h2 id="trk">Volunteer clean-up programme</h2>
+          <p class="meta">20 November 2026 to 17 February 2027</p>
+        </div>
+        <div class="day" aria-live="polite"><span id="dnum">–</span> <small id="dlbl">of 90 days</small></div>
+      </div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="90" aria-valuenow="0" id="pbar" aria-label="Programme progress"><div class="fill" id="pfill"></div></div>
+      <div class="phases" id="phs">
+        <span>Mobilize &amp; launch (days 1–30)</span>
+        <span>Engage &amp; intensify (days 31–60)</span>
+        <span>Consolidate (days 61–90)</span>
+      </div>
+      <svg class="wave" viewBox="0 0 1200 36" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18 C100 0 200 36 300 18 S500 0 600 18 S800 36 900 18 S1100 0 1200 18 V36 H0Z"/></svg>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="alt">
+  <div class="wrap split">
+    <div>
+      <h2>Who we are</h2>
+      <p class="lede">A youth-led organization turning environmental awareness into practical local action.</p>
+      <p>We work with households, schools, markets, institutions and local stakeholders across Homa Bay town and surrounding communities. We see waste as a resource and an opportunity to build skills, green livelihoods and local enterprise.</p>
+      <p>Our approach: community participation, practical solutions, responsible resource use and lasting behaviour change. We welcome partnerships with government, civil society, schools, businesses, development partners and communities.</p>
+    </div>
+    <div class="vm">
+      <div class="card" style="margin-bottom:1.25rem"><h3>Vision</h3><p>A clean, healthy and sustainable Homa Bay where communities manage resources responsibly and waste is valued.</p></div>
+      <div class="card"><h3>Mission</h3><p>Mobilize communities and partners to adopt integrated waste management, advance circular solutions and unlock youth-led green livelihoods.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="programmes">
+  <div class="wrap">
+    <h2>What we are building</h2>
+    <p class="lede">From community awareness to resource recovery and green jobs. These are the programmes we are working to deliver in full. The volunteer programme below is our first step.</p>
+    <div class="grid">
+      <div class="card"><h3>Community waste management</h3><p>Support collection, segregation and responsible disposal in neighbourhoods and institutions.</p></div>
+      <div class="card"><h3>School environmental action</h3><p>Promote colour-coded bins and environmental clubs.</p></div>
+      <div class="card"><h3>Lakeside and market clean-ups</h3><p>Recover plastic litter and engage fish traders, fisherfolk and nearby communities.</p></div>
+      <div class="card"><h3>Advocacy and sensitization</h3><p>Reach people through barazas, churches, local radio and stakeholder events.</p></div>
+    </div>
+
+    <h3 style="margin-top:3.5rem">Our waste-to-value pathway</h3>
+    <p>Community organic waste becomes useful outputs.</p>
+    <ol class="steps">
+      <li><h3>Segregate</h3><p>Separate food and market organics at the source.</p></li>
+      <li><h3>Bioconvert</h3><p>Feed organics to black soldier fly larvae.</p></li>
+      <li><h3>Recover</h3><p>Larvae can support animal feed. Frass can improve soils.</p></li>
+    </ol>
+    <p style="margin-top:1.5rem;color:var(--muted)">To scale up, we are prioritizing mechanized substrate preparation, better infrastructure, product quality, packaging, certification guidance and market links.</p>
+  </div>
+</section>
+
+<section id="campaign" class="alt">
+  <div class="wrap">
+    <h2>Our volunteer programme: 90 days for a cleaner Homa Bay</h2>
+    <p class="lede">A voluntary lakeside clean-up, plastic recovery, advocacy and awareness programme to protect Lake Victoria. It is our starting point while we mobilize resources and partners for the actual work. It is not a one-off event: visible clean-up action comes with sustained behaviour change and partnership-building.</p>
+    <div class="grid">
+      <div class="card"><h3>Where</h3><p>Homa Bay Fish Market, Oginga Beach and surrounding lakeside communities.</p></div>
+      <div class="card"><h3>Who we engage</h3><p>Fish traders, fisherfolk, beach and market leaders, residents, volunteers and local stakeholders.</p></div>
+      <div class="card"><h3>Our goal</h3><p>A cleaner lakeside and stronger community ownership of waste reduction, reuse, segregation, recycling and responsible disposal.</p></div>
+    </div>
+    <ol class="phase-list">
+      <li><b>Mobilize and launch</b><span>Days 1–30</span><p>Orient volunteers, identify litter hotspots, engage beach and market leaders, launch clean-ups and public awareness.</p></li>
+      <li><b>Engage and intensify</b><span>Days 31–60</span><p>Continue clean-ups, sensitize fish traders, fisherfolk and residents, promote segregation, connect plastics to recycling partners.</p></li>
+      <li><b>Consolidate</b><span>Days 61–90</span><p>Sustain activities, document results, recognize partners and volunteers, share lessons and a post-programme action plan.</p></li>
+    </ol>
+
+    <h3 style="margin-top:3.5rem">How we will measure progress</h3>
+    <p>We will document participation, waste recovery and community engagement throughout.</p>
+    <ul class="chips">
+      <li>Volunteer participation</li><li>Number of clean-up sessions</li><li>Waste collected by type and weight</li><li>People reached through awareness</li><li>Partners engaged</li><li>Before-and-after photos</li><li>Final 90-day report</li>
+    </ul>
+    <p style="margin-top:1.5rem;color:var(--muted)">The programme supports Sustainable Development Goals 3, 4, 8, 11, 12, 13, 14 and 17.</p>
+  </div>
+</section>
+
+<section id="volunteer">
+  <div class="wrap vol">
+    <div>
+      <h2>Volunteer with us</h2>
+      <p class="lede">Give a few hours to a cleaner Homa Bay and a healthier Lake Victoria. Tell us where you are and how you would like to help, and we will get back to you.</p>
+      <ul class="vol-list">
+        <li>Join lakeside and market clean-ups</li>
+        <li>Help communities separate waste at the source</li>
+        <li>Spread the word in your estate, school or church</li>
+        <li>Document the work with photos and records</li>
+      </ul>
+      <p class="vol-note">No experience needed. Everyone who cares about the lake is welcome.</p>
+    </div>
+
+    <form class="card vol-form" id="volForm" novalidate>
+      <div class="field">
+        <label for="vName">Full name</label>
+        <input id="vName" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="vPhone">Phone number</label>
+        <input id="vPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="vArea">Where do you live?</label>
+          <select id="vArea" name="area" required>
+            <option value="">Choose your area</option>
+            <option>Sofia</option>
+            <option>Makongeni</option>
+            <option>Shauri Yako</option>
+            <option>Oginga Beach area</option>
+            <option>Homa Bay Fish Market area</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="vTime">When are you free?</label>
+          <select id="vTime" name="time">
+            <option value="">Choose</option>
+            <option>Weekdays</option>
+            <option>Weekends</option>
+            <option>Weekdays and weekends</option>
+            <option>It varies</option>
+          </select>
+        </div>
+      </div>
+      <fieldset class="field">
+        <legend>How would you like to help?</legend>
+        <label class="chk"><input type="checkbox" name="help" value="Clean-ups"> Clean-ups</label>
+        <label class="chk"><input type="checkbox" name="help" value="Waste separation"> Waste separation</label>
+        <label class="chk"><input type="checkbox" name="help" value="Awareness"> Spreading awareness</label>
+        <label class="chk"><input type="checkbox" name="help" value="Photos and records"> Photos and records</label>
+      </fieldset>
+      <div class="field">
+        <label for="vMsg">Anything else? <span class="opt">(optional)</span></label>
+        <textarea id="vMsg" name="message" rows="3"></textarea>
+      </div>
+      <div class="vol-btns">
+        <button class="btn primary" type="submit" value="whatsapp">Send on WhatsApp</button>
+        <button class="btn ghost" type="submit" value="email">Send by email</button>
+      </div>
+      <p class="vol-status" id="volStatus" role="status" aria-live="polite"></p>
+      <p class="vol-fine">This opens a ready-to-send message to Ler Ber CBO. Your details go only to us.</p>
+    </form>
+  </div>
+</section>
+
+<section id="partner" class="alt">
+  <div class="wrap">
+    <h2>Partner with us</h2>
+    <p class="lede">Help us mobilize the resources to equip our volunteers. You can sponsor a full category, selected items or a contribution towards procurement and programme operations, in kind, in funds or through logistics.</p>
+    <div class="grid needs">
+      <div class="card"><h3>Clean-up tools</h3><ul><li>10 wheelbarrows</li><li>20 rakes</li><li>20 spades</li><li>10 fork spades</li><li>20 pangas</li><li>20 slashers</li></ul></div>
+      <div class="card"><h3>Volunteer safety</h3><ul><li>20 pairs of gumboots</li><li>20 overalls</li><li>20 pairs of PVC gloves</li><li>20 boxes of face masks</li><li>20 branded reflectors</li></ul></div>
+      <div class="card"><h3>Visibility and awareness</h3><ul><li>5 teardrop banners</li><li>Programme branding and artwork</li><li>Public awareness materials</li><li>Partner visibility and communications</li></ul></div>
+    </div>
+    <div class="grid" style="margin-top:2.5rem">
+      <div class="card"><h3>In-kind support</h3><p>Donate tools, PPE, banners, bins, liners or other useful materials.</p></div>
+      <div class="card"><h3>Financial support</h3><p>Contribute towards equipment, transport, waste handling and operating costs.</p></div>
+      <div class="card"><h3>Technical support</h3><p>Share environmental expertise, training, monitoring, safety guidance or recycling linkages.</p></div>
+      <div class="card"><h3>Visibility and mobilization</h3><p>Share programme messages, cover activities, mobilize staff and volunteers.</p></div>
+    </div>
+    <p style="margin-top:1.5rem;color:var(--muted)">We also welcome collaboration on school-based waste systems, community collection, recycling and waste-to-value initiatives.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Protect Lake Victoria. Build a cleaner Homa Bay.</h2>
+    <p class="lede">Join us in person or in kind. Together, we can turn community action into lasting environmental and livelihood impact.</p>
+    <p class="who">Talk to Anthony Osano, Organizing Secretary</p>
+    <ul class="reach">
+      <li>
+        <a href="mailto:lerber.ke@outlook.com?subject=Partnership%20with%20Ler%20Ber%20CBO" aria-label="Send an email to Ler Ber CBO" title="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span>Email</span>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+254720032125" aria-label="Call Ler Ber CBO" title="Call">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span>Call</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Homa+Bay+County+Kenya" target="_blank" rel="noopener" aria-label="Open Homa Bay County, Kenya in maps" title="Location">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Location</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-about">
+      <a class="brand" href="#top">Ler <span>Ber</span></a>
+      <p>A youth-led community organization turning waste into opportunity and protecting Lake Victoria, one clean-up at a time.</p>
+      <p class="motto">Community · Circularity · Sustainability</p>
+    </div>
+    <nav class="foot-col" aria-label="Footer">
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#programmes">Programmes</a></li>
+        <li><a href="#campaign">Volunteer programme</a></li>
+        <li><a href="#volunteer">Sign up to volunteer</a></li>
+        <li><a href="#partner">Partner with us</a></li>
+      </ul>
+    </nav>
+    <div class="foot-col">
+      <h2>Get in touch</h2>
+      <ul>
+        <li><a href="mailto:lerber.ke@outlook.com">lerber.ke@outlook.com</a></li>
+        <li><a href="tel:+254720032125">+254 720 032 125</a></li>
+        <li>Homa Bay County, Kenya</li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Get involved</h2>
+      <p>Volunteer on the lakeside, sponsor equipment or partner with us on the 90-day programme.</p>
+      <a class="foot-cta" href="#partner">Support the volunteers</a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <p>© <span id="yr">2026</span> Ler Ber Community-Based Organization</p>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
