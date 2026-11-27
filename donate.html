@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Donate – Ler Ber CBO</title>
+<meta name="description" content="Support Ler Ber CBO by donating through M-Pesa or by giving tools and protective equipment such as wheelbarrows, jembes and pangas.">
+<meta name="theme-color" content="#1E7A3C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://ler-ber-site.netlify.app/donate.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ler Ber CBO">
+<meta property="og:title" content="Donate – Ler Ber CBO">
+<meta property="og:description" content="Support Ler Ber CBO by donating through M-Pesa or by giving tools and protective equipment such as wheelbarrows, jembes and pangas.">
+<meta property="og:url" content="https://ler-ber-site.netlify.app/donate.html">
+<meta property="og:image" content="https://ler-ber-site.netlify.app/og-image.png">
+<meta property="og:image:alt" content="Ler Ber CBO: Clean shores. A living lake. Waste turned to worth.">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.className+=' js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html">Ler <span>Ber</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav id="nav" aria-label="Main">
+      <a href="about.html">About</a>
+      <a href="programmes.html">Programmes</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="partner.html">Partner</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-donate" href="donate.html" aria-current="page">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section>
+  <div class="wrap">
+    <h1 class="page-h">Support our volunteers</h1>
+    <p class="lede">Give by M-Pesa, or donate the tools our volunteers use on the lakeside, in the market and in the estates.</p>
+    <div class="btns">
+      <a class="btn primary" href="#mpesa">Give by M-Pesa</a>
+      <a class="btn ghost" href="#equipment">Donate equipment</a>
+    </div>
+  </div>
+</section>
+
+<section id="mpesa" class="alt">
+  <div class="wrap">
+    <h2>Give by M-Pesa</h2>
+    <p class="lede">Choose an amount, then pay from your phone in a few steps.</p>
+    <div class="don-grid">
+      <div class="card">
+        <h3>1. Choose an amount (KES)</h3>
+        <div class="amounts" id="amounts" role="group" aria-label="Donation amount">
+          <button type="button" class="amt" data-v="500" aria-pressed="false">500</button>
+          <button type="button" class="amt" data-v="1000" aria-pressed="false">1,000</button>
+          <button type="button" class="amt" data-v="2000" aria-pressed="false">2,000</button>
+          <button type="button" class="amt" data-v="5000" aria-pressed="false">5,000</button>
+        </div>
+        <div class="field" style="margin-top:1rem">
+          <label for="amtOther">Or enter another amount</label>
+          <input id="amtOther" type="number" min="10" inputmode="numeric" placeholder="e.g. 750">
+        </div>
+        <p class="amt-show" id="amtShow" role="status" aria-live="polite">Pick an amount to see your payment steps.</p>
+      </div>
+      <div class="card" id="payCard">
+        <h3>2. Pay with M-Pesa</h3>
+        <div id="payBody"></div>
+      </div>
+    </div>
+
+    <form class="card vol-form paid" id="paidForm" novalidate>
+      <h3>3. Tell us you have donated <span class="opt">(optional)</span></h3>
+      <p class="vol-note">A short message lets us thank you and match your payment. It opens a ready-to-send message to Ler Ber CBO.</p>
+      <div class="row">
+        <div class="field"><label for="pName">Your name</label><input id="pName" type="text" autocomplete="name"></div>
+        <div class="field"><label for="pAmt">Amount (KES)</label><input id="pAmt" type="number" min="10" inputmode="numeric"></div>
+        <div class="field"><label for="pCode">M-Pesa code</label><input id="pCode" type="text" placeholder="e.g. SJK2L9ABCD" autocapitalize="characters"></div>
+      </div>
+      <div class="vol-btns">
+        <button class="btn primary" type="submit" value="whatsapp">Send on WhatsApp</button>
+        <button class="btn ghost" type="submit" value="email">Send by email</button>
+      </div>
+      <p class="vol-status" id="paidStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section id="equipment">
+  <div class="wrap">
+    <h2>Donate equipment</h2>
+    <p class="lede">Tools and protective gear are what let volunteers show up and work safely. Tell us what you can give and we will arrange the handover with you.</p>
+    <form class="card vol-form gear" id="gearForm" novalidate>
+      <fieldset class="field items-group"><legend>Clean-up tools</legend><div class="items"><label class="item"><span class="i-name">Wheelbarrows<small>We need 10</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Wheelbarrows"></label><label class="item"><span class="i-name">Rakes<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Rakes"></label><label class="item"><span class="i-name">Spades<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Spades"></label><label class="item"><span class="i-name">Fork spades<small>We need 10</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Fork spades"></label><label class="item"><span class="i-name">Jembes (hoes)<small>Any number is welcome</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Jembes (hoes)"></label><label class="item"><span class="i-name">Pangas<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Pangas"></label><label class="item"><span class="i-name">Slashers<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Slashers"></label></div></fieldset>
+      <fieldset class="field items-group"><legend>Volunteer safety gear</legend><div class="items"><label class="item"><span class="i-name">Gumboots (pairs)<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Gumboots (pairs)"></label><label class="item"><span class="i-name">Overalls<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Overalls"></label><label class="item"><span class="i-name">PVC gloves (pairs)<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="PVC gloves (pairs)"></label><label class="item"><span class="i-name">Face masks (boxes)<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Face masks (boxes)"></label><label class="item"><span class="i-name">Branded reflectors<small>We need 20</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Branded reflectors"></label></div></fieldset>
+      <fieldset class="field items-group"><legend>Visibility</legend><div class="items"><label class="item"><span class="i-name">Teardrop banners<small>We need 5</small></span><input type="number" min="0" inputmode="numeric" value="0" data-label="Teardrop banners"></label></div></fieldset>
+      <div class="field">
+        <label for="gOther">Other items <span class="opt">(optional)</span></label>
+        <input id="gOther" type="text" placeholder="e.g. bins, liners, work gloves">
+      </div>
+      <div class="row">
+        <div class="field"><label for="gName">Your name or organization</label><input id="gName" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="gPhone">Phone number</label><input id="gPhone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="gHand">Handover</label>
+          <select id="gHand">
+            <option>Let us discuss</option>
+            <option>I can deliver to Homa Bay</option>
+            <option>Please collect from me</option>
+          </select>
+        </div>
+        <div class="field"><label for="gMsg">Note <span class="opt">(optional)</span></label><input id="gMsg" type="text"></div>
+      </div>
+      <div class="vol-btns">
+        <button class="btn primary" type="submit" value="whatsapp">Send on WhatsApp</button>
+        <button class="btn ghost" type="submit" value="email">Send by email</button>
+      </div>
+      <p class="vol-status" id="gearStatus" role="status" aria-live="polite"></p>
+      <p class="vol-fine">This opens a ready-to-send message to Ler Ber CBO. Quantities are what you can give, not what you must give.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-about">
+      <a class="brand" href="index.html">Ler <span>Ber</span></a>
+      <p>A youth-led community organization turning waste into opportunity and protecting Lake Victoria, one clean-up at a time.</p>
+      <p class="motto">Community · Circularity · Sustainability</p>
+    </div>
+    <nav class="foot-col" aria-label="Footer">
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="programmes.html">Programmes</a></li>
+        <li><a href="volunteer.html#campaign">Volunteer programme</a></li>
+        <li><a href="volunteer.html#volunteer">Sign up to volunteer</a></li>
+        <li><a href="partner.html">Partner with us</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="foot-col">
+      <h2>Get in touch</h2>
+      <ul>
+        <li><a href="mailto:lerber.ke@outlook.com">lerber.ke@outlook.com</a></li>
+        <li><a href="tel:+254720032125">+254 720 032 125</a></li>
+        <li>Homa Bay County, Kenya</li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Get involved</h2>
+      <p>Volunteer on the lakeside, donate by M-Pesa or give equipment for the 90-day programme.</p>
+      <a class="foot-cta" href="donate.html">Donate</a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <p>© <span id="yr">2026</span> Ler Ber Community-Based Organization</p>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
